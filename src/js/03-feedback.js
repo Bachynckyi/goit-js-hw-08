@@ -9,7 +9,7 @@ const LOCALSTORAGE_KEY = "feedback-form-state";
 
 onUpdate();
 
-let formData = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY)); 
+let formData = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY)) || {};
 
 function onInput(event) {
     formData[event.target.name] = event.target.value
@@ -18,7 +18,7 @@ function onInput(event) {
 
 function onSubmit(event) {
     event.preventDefault();
-    if (form.elements.email.value === "" || form.elements.message.value=== "") {
+    if (form.elements.email.value === "" || form.elements.message.value === "") {
         alert("Поля не могут быть пустыми");
     }
     else {
@@ -31,10 +31,9 @@ function onSubmit(event) {
 
 function onUpdate() {
     const savedData = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
-
     if (savedData) {
-    form.elements.email.value = savedData.email || '';
-    form.elements.message.value = savedData.message || '';
+        form.elements.email.value = savedData.email || '';
+        form.elements.message.value = savedData.message || '';
     };
 };
 
