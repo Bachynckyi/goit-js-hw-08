@@ -9,7 +9,7 @@ const LOCALSTORAGE_KEY = "feedback-form-state";
 
 onUpdate();
 
-let formData = {}; 
+let formData = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY)); 
 
 function onInput(event) {
     formData[event.target.name] = event.target.value
@@ -32,7 +32,7 @@ function onSubmit(event) {
 function onUpdate() {
     const savedData = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
 
-  if (savedData) {
+    if (savedData) {
     form.elements.email.value = savedData.email || '';
     form.elements.message.value = savedData.message || '';
     };
